@@ -1,0 +1,122 @@
+@keyframes fade {
+    from { opacity: 1; }
+    to { opacity: 0.2; }
+}
+
+* {
+    color: white;
+    background-color: black;
+}
+
+h1 {
+    margin: 0;
+    margin-block: 0.5dvh;
+    text-align: center;
+    font-size: 4dvh;
+}
+
+#topBar {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-bottom: 0.7dvh;
+}
+
+#puzzleSize {
+    margin-right: 0.4dvh;
+    font-size: 3dvh;
+}
+
+#puzzleSizeDropdown {
+    font-size: 2.4dvh;
+}
+
+#status {
+    margin: 0;
+    margin-left: auto;
+    font-size: 3dvh;
+}
+
+#puzzle {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.2dvh;
+    height: 30dvh;
+    border: 0.20dvh solid white;
+    border-radius: 0.7dvh;
+    padding: 0.2dvh;
+    text-align: center;
+}
+
+.cell {
+    display: grid;
+    place-content: center;
+    border: 0.2dvh solid grey;
+    font-size: 4dvh;
+}
+
+#bottomBar {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr;
+    grid-template-areas: "regenerate . numerals";
+    margin-top: 0.7dvh;
+}
+
+#regenerate {
+    grid-area: regenerate;
+    margin: 0;
+    padding: 0;
+    padding-inline: 0.2dvh;
+    border-color: white;
+    font-size: 3dvh;
+}
+
+#numerals {
+    grid-area: numerals;
+    margin: 0;
+    padding: 0;
+    padding-inline: 0.2dvh;
+    border-color: white;
+    font-size: 3dvh;
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 5dvw;
+    }
+
+    #topBar {
+        margin-bottom: 1dvw;
+    }
+
+    #puzzleSize {
+        margin-right: 0.4dvw;
+        font-size: 4.3dvw;
+    }
+    
+    #puzzleSizeDropdown {
+        font-size: 3.4dvw;
+    }
+    
+    #status {
+        font-size: 4.3dvw;
+    }
+    
+    .cell {
+        font-size: 4dvw;
+    }
+
+    #bottomBar {
+        margin-top: 1dvw;
+    }
+
+    #regenerate {
+        padding-inline: 0.2dvw;
+        font-size: 3.4dvw;
+    }
+
+    #numerals {
+        padding-inline: 0.2dvw;
+        font-size: 3.4dvw;
+    }
+}
