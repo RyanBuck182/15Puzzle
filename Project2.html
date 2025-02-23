@@ -12,36 +12,26 @@
         <h1>Slide Puzzle Game</h1>
     </header>
     <main>
-        <div id="topBar">
-            <div id="puzzleSize">
-                <label for="puzzleSizeDropdown">Puzzle Size:</label>
-                <select name="puzzleSize" id="puzzleSizeDropdown">
-                    <option>35</option>
-                    <option>24</option>
-                    <option selected>15</option>
-                    <option>8</option>
-                </select>
+        <div id="game">
+            <div id="topBar">
+                <div id="puzzleSize">
+                    <label for="puzzleSizeDropdown">Puzzle Size:</label>
+                    <select name="puzzleSize" id="puzzleSizeDropdown">
+                        <option>35</option>
+                        <option>24</option>
+                        <option selected>15</option>
+                        <option>8</option>
+                    </select>
+                </div>
+                
+                <p id="status">0/15</p>
             </div>
-            
-            <p id="status">0/15</p>
-        </div>
-        <div id="puzzle"></div>
-        <div id="bottomBar">
-            <button type="button" id="regenerate">Generate New Puzzle</button>
-            <button type="button" id="numerals">Roman Numerals</button>
+            <div id="puzzle"></div>
+            <div id="bottomBar">
+                <button type="button" id="regenerate">Generate New Puzzle</button>
+                <button type="button" id="numerals">Roman Numerals</button>
+            </div>    
         </div>
     </main>
 </body>
 </html>
-<script>
-    let board = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, '-'];
-    shuffleArray(board);
-
-    for (let i = 0; i < 15; i++) {
-        document.getElementById('square' + i).innerHTML = board[i];
-    }
-        
-
-
-    function shuffleArray(array) {}
-</script>

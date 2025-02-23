@@ -1,6 +1,6 @@
 /*
 Source:
-https://www.cs.princeton.edu/courses/archive/spring21/cos226/assignments/8puzzle/specification.php#:~:text=Thus%2C%20if%20a%20board%20has,inversions%2C%20then%20it%20is%20solvable.
+https://www.cs.princeton.edu/courses/archive/spring21/cos226/assignments/8puzzle/specification.php
 
 No direct code was used. Only used for the formula
 for checking whether the puzzle is solvable.
@@ -230,14 +230,17 @@ function isPuzzleSolvable(puzzleArray) {
     let evenAmountOfRowsAndColumns = Math.sqrt(puzzleSize + 1) % 2 == 0;
     if (evenAmountOfRowsAndColumns) { //even sized puzzle
         let emptyCellRow;
-        for (let i = 0; i <= puzzleSize; i++)
-            if (puzzleArray[i] == puzzleSize + 1)
-                emptyCellRow = Math.floor((i + 1) / Math.sqrt(puzzleSize + 1));
+        for (let i = puzzleSize; i >= 0; i--) {
+            if (puzzleArray[i] == puzzleSize + 1) {
+                emptyCellRow = Math.ceil((i + 1) / Math.sqrt(puzzleSize + 1)) - 1;
+                break;
+            }
+        }
                 
         return (inversions + emptyCellRow) % 2 == 1;
     }
     else //odd sized puzzle
-        return (inversions % 2 == 0);
+        return inversions % 2 == 0;
 }
 
 /**

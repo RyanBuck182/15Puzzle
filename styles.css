@@ -5,7 +5,7 @@
 
 * {
     color: white;
-    background-color: black;
+    background-color: #252525;
 }
 
 h1 {
@@ -13,6 +13,13 @@ h1 {
     margin-block: 0.5dvh;
     text-align: center;
     font-size: 4dvh;
+}
+
+main {
+    display: grid;
+    margin: auto;
+    height: 75dvh;
+    width: 75dvh;
 }
 
 #topBar {
@@ -41,7 +48,8 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 0.2dvh;
-    height: 30dvh;
+    height: 75dvh;
+    width: 75dvh;
     border: 0.20dvh solid white;
     border-radius: 0.7dvh;
     padding: 0.2dvh;
@@ -85,11 +93,26 @@ h1 {
         font-size: 5dvw;
     }
 
+    main {
+        height: 75dvw;
+        width: 75dvw;
+    }
+
     #topBar {
         margin-bottom: 1dvw;
     }
 
+    #puzzle {
+        gap: 0.2dvw;
+        height: 75dvw;
+        width: 75dvw;
+        border: 0.20dvw solid white;
+        border-radius: 0.7dvw;
+        padding: 0.2dvw;
+    }
+
     #puzzleSize {
+        gap: 0.2dvw;
         margin-right: 0.4dvw;
         font-size: 4.3dvw;
     }
