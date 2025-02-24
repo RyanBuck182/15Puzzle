@@ -21,6 +21,7 @@ const highlightColor = 'darkblue';
 //global variables
 let emptyIndex;
 let puzzleSize;
+let puzzleDim;
 let numerals = 'Arabic';
 let moveInProgress = false;
 
@@ -32,6 +33,7 @@ function generatePuzzle() {
     
     //number of tiles in the puzzle
     puzzleSize = Number(puzzleSizeSelector.options[puzzleSizeSelector.selectedIndex].innerText);
+    puzzleDim = Math.sqrt(puzzleSize + 1);
 
     //randomizing puzzle
     let puzzleArray;
@@ -58,8 +60,8 @@ function generatePuzzle() {
 
     //making correct number of columns and rows
     let fraction = '1fr ';
-    puzzle.style.gridTemplateColumns = fraction.repeat(Math.sqrt(puzzleSize + 1));
-    puzzle.style.gridTemplateRows = fraction.repeat(Math.sqrt(puzzleSize + 1));
+    puzzle.style.gridTemplateColumns = fraction.repeat(puzzleDim);
+    puzzle.style.gridTemplateRows = fraction.repeat(puzzleDim);
 }
 
 /**
@@ -129,16 +131,19 @@ function makeMove(index) {
  * @returns {Boolean}
  */
 function isValidCell(index) {
-    if (index == emptyIndex + 1 && index % Math.sqrt(puzzleSize + 1) != 0)
-        return true;
-    else if (index == emptyIndex - 1 && emptyIndex % Math.sqrt(puzzleSize + 1) != 0)
-        return true;
-    else if (index == emptyIndex + Math.sqrt(puzzleSize + 1))
-        return true;
-    else if (index == emptyIndex - Math.sqrt(puzzleSize + 1))
-        return true;
-    else
+    if (index < 0 || index > puzzleSize)
         return false;
+
+    if (index == emptyIndex + 1 && index % puzzleDim != 0)
+        return true;
+    else if (index == emptyIndex - 1 && emptyIndex % puzzleDim != 0)
+        return true;
+    else if (index == emptyIndex + puzzleDim)
+        return true;
+    else if (index == emptyIndex - puzzleDim)
+        return true;
+
+    return false;
 }
 
 /**
@@ -227,12 +232,12 @@ function setCellValue(index, value) {
 function isPuzzleSolvable(puzzleArray) {
     let inversions = sumInversions(puzzleArray);
 
-    let evenAmountOfRowsAndColumns = Math.sqrt(puzzleSize + 1) % 2 == 0;
+    let evenAmountOfRowsAndColumns = puzzleDim % 2 == 0;
     if (evenAmountOfRowsAndColumns) { //even sized puzzle
         let emptyCellRow;
         for (let i = puzzleSize; i >= 0; i--) {
             if (puzzleArray[i] == puzzleSize + 1) {
-                emptyCellRow = Math.ceil((i + 1) / Math.sqrt(puzzleSize + 1)) - 1;
+                emptyCellRow = Math.ceil((i + 1) / puzzleDim) - 1;
                 break;
             }
         }
@@ -353,6 +358,32 @@ function swap(array, index1, index2) {
     array[index1] = array[index2];
     array[index2] = temp;
 }
+
+// Allow tile sliding using arrow keys
+addEventListener("keydown", e => {
+    let moveIndex = -1;
+
+    switch(e.key) {
+        case "ArrowUp":
+        case "w":
+            moveIndex = emptyIndex - puzzleDim;
+            break;
+        case "ArrowDown":
+        case "s":
+            moveIndex = emptyIndex + puzzleDim;
+            break;
+        case "ArrowLeft":
+        case "a":
+            moveIndex = (emptyIndex % puzzleDim != 0) ? (emptyIndex - 1) : -1;
+            break;
+        case "ArrowRight":
+        case "d":
+            moveIndex = ((emptyIndex + 1) % puzzleDim != 0) ? (emptyIndex + 1) : -1;
+            break;
+    }
+
+    makeMove(moveIndex);
+});
 
 //connecting dropdown menu and regnerate button to generatePuzzle 
 puzzleSizeSelector.onchange = generatePuzzle;
