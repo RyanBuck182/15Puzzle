@@ -6,6 +6,8 @@ Mathematically guaranteed to be solvable!
 Click a tile next to the empty tile (represented by a dash `-`) to move it to the empty space.
 Put them in numerical sequence to win!
 
+Can also use arrow keys or WASD instead of clicking.
+
 [Click here to play!](https://ryanbuck182.github.io/15Puzzle/)
 
 Testing this game made me ~~really~~ fairly good at 15 puzzles.
